@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<form action="" method="post" name="edit">
+  {{form.hidden_tag()}}
+  <p>
+    <p>{% for error in form.errors.name %}
+      <span style="color: red;">[{{error}}]</span>
+      {% endfor %}<br>
+      Name:{{form.name}}
+    </p>
+      Books:<br>{{ form.books }}
+  </p>
+  <button type="submit" value="Save" class="btn btn-default navbar-btn">Save</button>
+  <a href="{{url_for('authors')}}" >Cancel</a>
+</form>
+{% endblock %}

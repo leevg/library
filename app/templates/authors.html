@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<a href="{{url_for('edit_author',id='new')}}" class="btn btn-default navbar-btn">Add Author</a>
+{% if authors %}
+{% for author in authors %}
+<p><a href="{{url_for('author', id=author.id)}}" >{{ author.name }}</a></p>
+{% endfor %}
+{% endif %}
+{% endblock %}

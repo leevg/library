@@ -1,0 +1,49 @@
+<html>
+  <head>
+    {% if title %}
+    <title>{{title}}</title>
+    {% else %}
+    <title>Library</title>
+    {% endif %}
+    <script src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='bootstrap.min.js') }}">
+    </script>
+    <link rel=stylesheet type=text/css href="{{ url_for('static',
+                                            filename='bootstrap.min.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static',
+                                            filename='style.css') }}">
+  </head>
+  <body>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="{{ url_for('index') }}">Library</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li><a href="{{ url_for('books')}}">Books</a></li>
+          <li><a href="{{ url_for('authors')}}">Authors</a></li>
+        </ul>
+        <ul class="nav navbar-nav pull-right">
+          {% if g.user.is_authenticated() %}
+          <li><a href="{{ url_for('logout') }}">Logout</a></li>
+          {% else %}
+          <li><a href="{{ url_for('login') }}">Sign In</a></li>
+          {% endif %}
+        </ul>
+    </nav>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+      {% for message in messages %}
+      <li class="alert alert-info alert-dismissable half-width">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+        &times;
+      </button>
+        {{ message }}
+      </li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </body>
+</html>
