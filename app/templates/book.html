@@ -5,7 +5,7 @@
   Written by:&nbsp
   {% if book.authors %}
   {% for author in book.authors %}
-  <a href="url_for('author', id=author.id)">{{author.name}}&nbsp</a>
+  <a href="{{url_for('author', id=author.id)}}">{{author.name}}&nbsp</a>
   {% endfor %}
   {% endif %}
 
